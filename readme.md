@@ -2,4 +2,7 @@
 
 _A small, and very easy to use, library for creating menus at Spigot API!_
 
-Currently, we're working on a rework for this library.
+
+If you want to use this library into your project you must do the following:
+1. Clone the repository
+2. Run ./gradlew clean publishToMavenLocal
