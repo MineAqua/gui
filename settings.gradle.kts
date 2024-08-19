@@ -18,8 +18,8 @@ arrayOf("api", "plugin").forEach {
 }
 
 // menu adapters
-arrayOf("1_8_R3", "1_16_R3", "1_17_R1", "1_18_R2", "1_19_R1", "1_19_R3").forEach {
-    includePrefixed("menu:adapt:v$it")
+arrayOf("v1_8_R3", "modern").forEach {
+    includePrefixed("menu:adapt:$it")
 }
 
 fun includePrefixed(name: String) {

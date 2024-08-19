@@ -1,6 +1,7 @@
-package team.unnamed.gui.menu.v1_18_R2;
+package team.unnamed.gui.menu.modern;
 
-import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftInventoryCustom;
+import org.bukkit.craftbukkit.inventory.CraftInventoryCustom;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +22,6 @@ public class MenuInventoryWrapperImpl extends CraftInventoryCustom
                 menuInventory.getSlots(),
                 menuInventory.getTitle()
         );
-
         this.menuInventory = menuInventory;
     }
 
@@ -34,5 +34,4 @@ public class MenuInventoryWrapperImpl extends CraftInventoryCustom
     public @NotNull MenuInventory getMenuInventory() {
         return menuInventory;
     }
-
 }

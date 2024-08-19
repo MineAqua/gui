@@ -1,5 +1,6 @@
 package team.unnamed.gui.menu.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
@@ -18,8 +19,16 @@ public final class MenuUtil {
 
     static {
         try {
+            final String[] versions = Bukkit.getBukkitVersion().split("\\.");
+            final byte minor = Byte.parseByte(versions[1]);
+            final String versionPackage;
+            if (minor >= 21) {
+                versionPackage = "modern";
+            } else {
+                versionPackage = "v1_8_R3";
+            }
             WRAPPER_CONSTRUCTOR = Class.forName(
-                    "team.unnamed.gui.menu." + ServerVersion.CURRENT
+                    "team.unnamed.gui.menu." + versionPackage
                             + ".MenuInventoryWrapperImpl"
             ).getConstructor(InventoryHolder.class, MenuInventory.class);
         } catch (ClassNotFoundException | NoSuchMethodException e) {
