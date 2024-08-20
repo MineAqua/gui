@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
-import team.unnamed.bukkit.ServerVersion;
 import team.unnamed.gui.menu.adapt.MenuInventoryWrapper;
 import team.unnamed.gui.menu.item.ItemClickable;
 import team.unnamed.gui.menu.type.MenuInventory;

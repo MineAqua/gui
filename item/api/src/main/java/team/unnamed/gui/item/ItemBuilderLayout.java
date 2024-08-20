@@ -4,7 +4,6 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import team.unnamed.bukkit.ServerVersion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +15,6 @@ import static team.unnamed.validate.Validate.isNotNull;
 
 abstract class ItemBuilderLayout<T extends ItemBuilder>
         implements ItemBuilder {
-
     protected final Material material;
     private final int amount;
     private final byte data;
@@ -101,12 +99,10 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
         meta.setDisplayName(name);
         meta.setLore(lore);
 
-        int currentVersion = ServerVersion.CURRENT.getMinor();
-
-        if (currentVersion != 7) {
+        if (ServerVersionConstants.MINOR_VERSION != 7) {
             List<org.bukkit.inventory.ItemFlag> itemFlags = new ArrayList<>();
 
-            if (currentVersion <= 13) {
+            if (ServerVersionConstants.MINOR_VERSION <= 13) {
                 flags.remove(ItemFlag.HIDE_DYE);
             }
 
@@ -117,7 +113,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
             itemFlags.forEach(meta::addItemFlags);
         }
 
-        if (currentVersion >= 11) {
+        if (ServerVersionConstants.MINOR_VERSION >= 11) {
             meta.setUnbreakable(unbreakable);
         } else {
             meta.spigot().setUnbreakable(unbreakable);

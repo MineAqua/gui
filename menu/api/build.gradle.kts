@@ -5,7 +5,7 @@ plugins {
 dependencies {
     api(libs.annotations)
 
-    arrayOf("validation", "bukkit").forEach {
+    arrayOf("validation").forEach {
         api("team.unnamed:commons-$it:3.1.0")
     }
 

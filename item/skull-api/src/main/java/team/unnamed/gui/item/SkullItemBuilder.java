@@ -5,7 +5,6 @@ import com.mojang.authlib.properties.Property;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import team.unnamed.bukkit.ServerVersion;
 import team.unnamed.gui.item.skull.SkullSkin;
 
 import java.lang.reflect.Field;
@@ -20,21 +19,18 @@ public class SkullItemBuilder
 
     static {
         try {
-            Class<?> metaClass = Class.forName(
-                    "org.bukkit.craftbukkit."
-                            + ServerVersion.CURRENT +
-                            ".inventory.CraftMetaSkull"
-            );
-
-            PROFILE_FIELD = metaClass.getDeclaredField("profile");
-
-            if (ServerVersion.CURRENT.getMinor() < 13) {
-                SKULL_MATERIAL = Material.SKULL_ITEM;
-                DATA = 3;
-            } else {
+            final Class<?> metaClass;
+            if (ServerVersionConstants.MINOR_VERSION >= 21) {
+                metaClass = Class.forName("org.bukkit.craftbukkit.inventory.CraftMetaSkull");
                 SKULL_MATERIAL = Material.getMaterial("PLAYER_HEAD");
                 DATA = 0;
+            } else {
+                metaClass = Class.forName("org.bukkit.craftbukkit.v1_8_R3.inventory.CraftMetaSkull");
+                SKULL_MATERIAL = Material.SKULL_ITEM;
+                DATA = 3;
             }
+
+            PROFILE_FIELD = metaClass.getDeclaredField("profile");
         } catch (ClassNotFoundException | NoSuchFieldException e) {
             throw new IllegalStateException("Cannot get the SkullMeta profile field!", e);
         }
@@ -60,7 +56,7 @@ public class SkullItemBuilder
         ItemStack itemStack = super.build();
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
 
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), "unnamed");
 
         gameProfile.getProperties().put("textures", new Property(
                 "textures",

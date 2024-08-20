@@ -2,8 +2,8 @@ package team.unnamed.gui.item.util;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import team.unnamed.bukkit.ServerVersion;
 import team.unnamed.gui.item.ItemBuilder;
+import team.unnamed.gui.item.ServerVersionConstants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +43,7 @@ public class DyeItemUtils {
         Material material;
         byte data;
 
-        if (ServerVersion.CURRENT.getMinor() < 13) {
+        if (ServerVersionConstants.MINOR_VERSION < 13) {
             material = Material.valueOf(materialKey);
             data = materialKey.equals("DYE") ? dyeColor.getDyeData() : dyeColor.getWoolData();
         } else {

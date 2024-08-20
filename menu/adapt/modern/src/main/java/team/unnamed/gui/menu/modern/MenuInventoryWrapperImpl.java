@@ -22,6 +22,7 @@ public class MenuInventoryWrapperImpl extends CraftInventoryCustom
                 menuInventory.getSlots(),
                 menuInventory.getTitle()
         );
+
         this.menuInventory = menuInventory;
     }
 
